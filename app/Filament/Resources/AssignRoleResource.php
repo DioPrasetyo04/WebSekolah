@@ -107,7 +107,7 @@ class AssignRoleResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->headerActions([
-                Tables\Actions\CreateAction::make(),
+                // Tables\Actions\CreateAction::make(),
             ])
             ->actions([
                 EditAction::make(),
