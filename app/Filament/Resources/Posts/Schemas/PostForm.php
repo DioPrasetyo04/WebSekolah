@@ -22,7 +22,7 @@ class PostForm
                     TextInput::make('title')
                         ->required()
                         ->live(onBlur: true)
-                        ->afterStateUpdated(fn (string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
+                        ->afterStateUpdated(fn(string $operation, $state, callable $set) => $operation === 'create' ? $set('slug', Str::slug($state)) : null),
                     TextInput::make('slug')
                         ->required()
                         ->disabled()
@@ -58,6 +58,7 @@ class PostForm
                     FileUpload::make('thumbnail')
                         ->image()
                         ->directory('posts/thumbnails')
+                        ->disk('public')
                         ->columnSpanFull(),
                     Repeater::make('media')
                         ->relationship('media')
@@ -70,6 +71,7 @@ class PostForm
                                 ->required(),
                             FileUpload::make('file_path')
                                 ->directory('posts/media')
+                                ->disk('public')
                                 ->required(),
                         ])
                         ->columns(2)

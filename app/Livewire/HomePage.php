@@ -2,48 +2,47 @@
 
 namespace App\Livewire;
 
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use Livewire\Component;
 
 class HomePage extends Component
 {
-    public $latestPosts;
-    public $categories;
-    public $selectedCategory = '';
+    public $latestPosts = [];
+    public $categories = [];
+    public $selectedCategory = null; // gunakan null
     public $searchKeyword = '';
 
     public function mount()
     {
-        // Get all categories for filter
         $this->categories = Category::withCount('posts')->get();
-        
-        // Get latest posts
         $this->loadPosts();
     }
 
     public function loadPosts()
     {
-        $query = Post::published()
-            ->with('author', 'categories')
-            ->latest('published_at');
+        $query = Post::query()
+            ->with(['author', 'categories'])
+            ->orderByDesc('published_at');
 
-        // Filter by category
-        if ($this->selectedCategory) {
-            $query->whereHas('categories', function($q) {
-                $q->where('categories.id', $this->selectedCategory);
+        if (!empty($this->selectedCategory)) {
+            $categoryId = (int) $this->selectedCategory;
+
+            $query->whereHas('categories', function ($q) use ($categoryId) {
+                $q->where('categories.id', $categoryId);
             });
         }
 
-        // Search by keyword
-        if ($this->searchKeyword) {
-            $query->where(function($q) {
-                $q->where('title', 'like', '%' . $this->searchKeyword . '%')
-                  ->orWhere('description', 'like', '%' . $this->searchKeyword . '%');
+        if (!empty($this->searchKeyword)) {
+            $keyword = $this->searchKeyword;
+
+            $query->where(function ($q) use ($keyword) {
+                $q->where('title', 'like', "%{$keyword}%")
+                    ->orWhere('description', 'like', "%{$keyword}%");
             });
         }
 
-        $this->latestPosts = $query->take(6)->get();
+        $this->latestPosts = $query->get();
     }
 
     public function updatedSelectedCategory()
@@ -56,15 +55,15 @@ class HomePage extends Component
         $this->loadPosts();
     }
 
-    public function filterByCategory($categoryId)
+    public function filterByCategory($categoryId = null)
     {
-        $this->selectedCategory = $categoryId;
+        $this->selectedCategory = $categoryId ?: null;
         $this->loadPosts();
     }
 
     public function clearFilters()
     {
-        $this->selectedCategory = '';
+        $this->selectedCategory = null;
         $this->searchKeyword = '';
         $this->loadPosts();
     }

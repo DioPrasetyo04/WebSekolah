@@ -16,6 +16,8 @@ class Post extends Model
      *
      * @var array<int, string>
      */
+    protected $table = 'posts';
+
     protected $fillable = [
         'title',
         'slug',
@@ -49,7 +51,7 @@ class Post extends Model
         static::creating(function ($post) {
             if (empty($post->slug)) {
                 $post->slug = Str::slug($post->title);
-                
+
                 // Ensure slug is unique
                 $originalSlug = $post->slug;
                 $count = 1;
@@ -82,7 +84,7 @@ class Post extends Model
     /**
      * Relationship: Media files for this post
      */
-    public function media()
+    public function medias()
     {
         return $this->hasMany(PostMedia::class);
     }
