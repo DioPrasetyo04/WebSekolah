@@ -43,12 +43,6 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
                 </div>
 
-                <!-- Play Icon Overlay -->
-                <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-30">
-                    <div class="w-24 h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center">
-                        <i data-lucide="play" class="w-12 h-12 text-white ml-2"></i>
-                    </div>
-                </div>
 
                 <!-- Content -->
                 <div class="absolute inset-0 flex items-center">

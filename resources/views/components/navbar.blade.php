@@ -58,34 +58,14 @@
                 @endforeach
             </div>
 
-            <!-- Action Buttons -->
-            <div class="flex items-center gap-3">
-                <!-- Login Button -->
-                <button 
-                    :class="isScrolled ? 'bg-red-600 text-white hover:bg-red-700' : 'bg-white text-red-600 hover:bg-red-50'"
-                    class="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-xl font-medium transition-all shadow-lg hover:scale-105 hover:-translate-y-0.5 active:scale-95"
-                >
-                    <i data-lucide="log-in" class="w-4 h-4"></i>
-                    Login
-                </button>
-
-                <!-- Settings Button -->
-                <button 
-                    :class="isScrolled ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' : 'bg-white/20 text-white hover:bg-white/30'"
-                    class="hidden md:flex items-center justify-center w-10 h-10 rounded-lg transition-all hover:rotate-90"
-                >
-                    <i data-lucide="settings" class="w-5 h-5"></i>
-                </button>
-
-                <!-- Mobile Menu Button -->
-                <button 
-                    @click="mobileMenuOpen = !mobileMenuOpen"
-                    :class="isScrolled ? 'text-gray-700' : 'text-white'"
-                    class="lg:hidden p-2 rounded-lg active:scale-90 transition-transform"
-                >
-                    <i :data-lucide="mobileMenuOpen ? 'x' : 'menu'" class="w-6 h-6"></i>
-                </button>
-            </div>
+            <!-- Mobile Menu Button -->
+            <button 
+                @click="mobileMenuOpen = !mobileMenuOpen"
+                :class="isScrolled ? 'text-gray-700' : 'text-white'"
+                class="lg:hidden p-2 rounded-lg active:scale-90 transition-transform"
+            >
+                <i :data-lucide="mobileMenuOpen ? 'x' : 'menu'" class="w-6 h-6"></i>
+            </button>
         </div>
     </div>
 
@@ -112,15 +92,7 @@
             </a>
             @endforeach
             
-            <div class="flex gap-3 pt-4">
-                <button class="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 transition-all">
-                    <i data-lucide="log-in" class="w-4 h-4"></i>
-                    Login
-                </button>
-                <button class="flex items-center justify-center px-4 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-all">
-                    <i data-lucide="settings" class="w-5 h-5"></i>
-                </button>
-            </div>
+
         </div>
     </div>
 </nav>
