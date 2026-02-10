@@ -81,7 +81,7 @@ class EkstrakurikulerPage extends Component
     public function render()
     {
         return view('livewire.ekstrakurikuler-page')
-            ->layout('components.layouts.app', [
+            ->layout('layouts.layout', [
                 'title' => 'Ekstrakurikuler - SDN 03 Tugu',
             ]);
     }

@@ -15,7 +15,7 @@ class PostShow extends Component
         // Try to find real post first
         $realPost = Post::where('slug', $slug)
             ->where('status', 'published')
-            ->with(['author', 'categories', 'medias' => function ($q) {
+            ->with(['author', 'categories', 'media' => function ($q) {
                 $q->orderBy('id', 'asc');
             }])
             ->first();
@@ -72,9 +72,9 @@ class PostShow extends Component
                 ->get();
         }
 
-        return view('livewire.post-show', [
+        return view('home.show', [
             'relatedPosts' => $relatedPosts,
-        ])->layout('components.layouts.app', [
+        ])->layout('layouts.layout', [
             'title' => $this->post->title . ' - SDN 03 Tugu',
         ]);
     }

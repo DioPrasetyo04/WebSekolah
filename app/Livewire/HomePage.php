@@ -70,8 +70,10 @@ class HomePage extends Component
 
     public function render()
     {
-        return view('livewire.home-page')
-            ->layout('components.layouts.app', [
+        return view('welcome', [
+            'posts' => $this->latestPosts,
+        ])
+            ->layout('layouts.layout', [
                 'title' => 'SDN 03 Tugu - Sekolah Dasar Negeri Berkualitas',
                 'description' => 'Website resmi SDN 03 Tugu. Membentuk generasi unggul, berkarakter, dan berprestasi melalui pendidikan berkualitas.'
             ]);

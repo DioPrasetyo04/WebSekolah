@@ -146,7 +146,7 @@ class PrestasiPage extends Component
     public function render()
     {
         return view('livewire.prestasi-page')
-            ->layout('components.layouts.app', [
+            ->layout('layouts.layout', [
                 'title' => 'Prestasi - SDN 03 Tugu',
             ]);
     }

@@ -84,7 +84,7 @@ class Post extends Model
     /**
      * Relationship: Media files for this post
      */
-    public function medias()
+    public function media()
     {
         return $this->hasMany(PostMedia::class);
     }

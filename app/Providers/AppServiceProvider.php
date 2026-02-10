@@ -14,11 +14,9 @@ class AppServiceProvider extends ServiceProvider
         //
     }
 
-    /**
-     * Bootstrap any application services.
-     */
     public function boot(): void
     {
         \App\Models\User::observe(\App\Observers\UserObserver::class);
+        \Illuminate\Support\Facades\Blade::component('layouts.layout', 'layouts.layout');
     }
 }

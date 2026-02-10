@@ -20,6 +20,8 @@ class Category extends Model
         'name',
         'slug',
         'description',
+        'image',
+        'extended_description',
     ];
 
     /**
